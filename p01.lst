@@ -1,0 +1,149 @@
+GAMS 28.2.0  r750fa45 Released Aug 19, 2019 LEX-LEG x86 64bit/Linux                                                                                                                                                                    10/24/19 11:26:24 Page 1
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+C o m p i l a t i o n
+
+
+   1  VARIABLES Z;
+   2  POSITIVE VARIABLES Xoutdoor, Xindoor;
+   3  EQUATIONS OBJ, M1Limit, M2Limit, Dif, MaxIndoor;
+   4   
+   5  OBJ..       5 * Xoutdoor + 4 * Xindoor =E= Z;
+   6  M1Limit..   6 * Xoutdoor + 4 * Xindoor =L= 24;
+   7  M2Limit..   1 * Xoutdoor + 2 * Xindoor =L= 6;
+   8  Dif..       Xindoor - Xoutdoor =L= 1;
+   9  MaxIndoor.. Xindoor =L= 2;
+  10   
+  11  MODEL ReddyMikkysPROBLEM /ALL/
+  12  OPTION LP = SOPLEX
+  13  SOLVE ReddyMikkysPROBLEM USING LP MAXIMIZING Z;
+
+
+COMPILATION TIME     =        0.000 SECONDS      2 MB  28.2.0 r750fa45 LEX-LEG
+GAMS 28.2.0  r750fa45 Released Aug 19, 2019 LEX-LEG x86 64bit/Linux                                                                                                                                                                    10/24/19 11:26:24 Page 2
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Equation Listing    SOLVE ReddyMikkysPROBLEM Using LP From line 13
+
+
+---- OBJ  =E=  
+
+OBJ..  - Z + 5*Xoutdoor + 4*Xindoor =E= 0 ; (LHS = 0)
+     
+
+---- M1Limit  =L=  
+
+M1Limit..  6*Xoutdoor + 4*Xindoor =L= 24 ; (LHS = 0)
+     
+
+---- M2Limit  =L=  
+
+M2Limit..  Xoutdoor + 2*Xindoor =L= 6 ; (LHS = 0)
+     
+
+---- Dif  =L=  
+
+Dif..  - Xoutdoor + Xindoor =L= 1 ; (LHS = 0)
+     
+
+---- MaxIndoor  =L=  
+
+MaxIndoor..  Xindoor =L= 2 ; (LHS = 0)
+     
+GAMS 28.2.0  r750fa45 Released Aug 19, 2019 LEX-LEG x86 64bit/Linux                                                                                                                                                                    10/24/19 11:26:24 Page 3
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Column Listing      SOLVE ReddyMikkysPROBLEM Using LP From line 13
+
+
+---- Z  
+
+Z
+                (.LO, .L, .UP, .M = -INF, 0, +INF, 0)
+       -1       OBJ
+
+
+---- Xoutdoor  
+
+Xoutdoor
+                (.LO, .L, .UP, .M = 0, 0, +INF, 0)
+        5       OBJ
+        6       M1Limit
+        1       M2Limit
+       -1       Dif
+
+
+---- Xindoor  
+
+Xindoor
+                (.LO, .L, .UP, .M = 0, 0, +INF, 0)
+        4       OBJ
+        4       M1Limit
+        2       M2Limit
+        1       Dif
+        1       MaxIndoor
+
+GAMS 28.2.0  r750fa45 Released Aug 19, 2019 LEX-LEG x86 64bit/Linux                                                                                                                                                                    10/24/19 11:26:24 Page 4
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Model Statistics    SOLVE ReddyMikkysPROBLEM Using LP From line 13
+
+
+MODEL STATISTICS
+
+BLOCKS OF EQUATIONS           5     SINGLE EQUATIONS            5
+BLOCKS OF VARIABLES           3     SINGLE VARIABLES            3
+NON ZERO ELEMENTS            10
+
+
+GENERATION TIME      =        0.002 SECONDS      3 MB  28.2.0 r750fa45 LEX-LEG
+
+
+EXECUTION TIME       =        0.002 SECONDS      3 MB  28.2.0 r750fa45 LEX-LEG
+GAMS 28.2.0  r750fa45 Released Aug 19, 2019 LEX-LEG x86 64bit/Linux                                                                                                                                                                    10/24/19 11:26:24 Page 5
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE ReddyMikkysPROBLEM Using LP From line 13
+
+
+               S O L V E      S U M M A R Y
+
+     MODEL   ReddyMikkysPROBLEM   OBJECTIVE  Z
+     TYPE    LP                   DIRECTION  MAXIMIZE
+     SOLVER  SOPLEX               FROM LINE  13
+
+**** SOLVER STATUS     1 Normal Completion         
+**** MODEL STATUS      1 Optimal                   
+**** OBJECTIVE VALUE               21.0000
+
+ RESOURCE USAGE, LIMIT          0.000      1000.000
+ ITERATION COUNT, LIMIT         3    2000000000
+
+Soplex           28.2.0 r750fa45 Released Aug 19, 2019 LEG x86 64bit/Linux    
+
+                           LOWER          LEVEL          UPPER         MARGINAL
+
+---- EQU OBJ                 .              .              .            -1.0000      
+---- EQU M1Limit           -INF           24.0000        24.0000         0.7500      
+---- EQU M2Limit           -INF            6.0000         6.0000         0.5000      
+---- EQU Dif               -INF           -1.5000         1.0000          .          
+---- EQU MaxIndoor         -INF            1.5000         2.0000          .          
+
+                           LOWER          LEVEL          UPPER         MARGINAL
+
+---- VAR Z                 -INF           21.0000        +INF             .          
+---- VAR Xoutdoor            .             3.0000        +INF             .          
+---- VAR Xindoor             .             1.5000        +INF             .          
+
+
+**** REPORT SUMMARY :        0     NONOPT
+                             0 INFEASIBLE
+                             0  UNBOUNDED
+
+
+EXECUTION TIME       =        0.000 SECONDS      2 MB  28.2.0 r750fa45 LEX-LEG
+
+
+USER: GAMS Development Corporation, USA              G871201/0000CA-ANY
+      Free Demo, +1 202-342-0180, support@gams.com, www.gams.com DC0000
+
+
+**** FILE SUMMARY
+
+Input      /home/hjgr/Dev/ios2019/p01.gms
+Output     /home/hjgr/Dev/ios2019/p01.lst
